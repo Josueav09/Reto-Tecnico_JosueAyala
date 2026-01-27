@@ -1,0 +1,64 @@
+# ============================================
+# Backend (.NET)
+# ============================================
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ============================================
+# Frontend (Node/React/Vite)
+# ============================================
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor directories and files
+.DS_Store
+*.swp
+*.swo
+*~
+
+# ============================================
+# Archivos temporales del proyecto
+# ============================================
+*.txt
+*.json.bak
+documentos-*.json
+beneficiarios-*.json
+beneficiarios-*.txt
+
+# ============================================
+# Configuración sensible (NO subir contraseñas)
+# ============================================
+# Nota: appsettings.json se incluye porque usa autenticación Windows
+# Si usaras contraseñas, deberías excluirlo
+
+# ============================================
+# Sistema operativo
+# ============================================
+Thumbs.db
+Desktop.ini

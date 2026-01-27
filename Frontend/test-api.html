@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Test API - Documentos de Identidad</h1>
+
+    <button onclick="testAPI()">Cargar Documentos</button>
+
+    <h2>Resultado:</h2>
+    <div id="result"></div>
+
+    <h2>JSON Completo:</h2>
+    <pre id="json"></pre>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('result');
+            const jsonDiv = document.getElementById('json');
+
+            resultDiv.innerHTML = '<p>Cargando...</p>';
+            jsonDiv.textContent = '';
+
+            try {
+                const response = await fetch('http://localhost:5000/api/DocumentoIdentidad');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Mostrar JSON completo
+                jsonDiv.textContent = JSON.stringify(data, null, 2);
+
+                // Mostrar resultado formateado
+                let html = `<p class="success">✓ Se cargaron ${data.length} documentos</p>`;
+                html += '<ul>';
+
+                data.forEach(doc => {
+                    html += `<li>
+                        <strong>ID:</strong> ${doc.id} <br>
+                        <strong>Nombre:</strong> ${doc.nombre} <br>
+                        <strong>Abreviatura:</strong> ${doc.abreviatura} <br>
+                        <strong>País:</strong> ${doc.pais} <br>
+                        <strong>Longitud:</strong> ${doc.longitud} <br>
+                        <strong>Solo Números:</strong> ${doc.soloNumeros} <br>
+                        <strong>Activo:</strong> ${doc.activo}
+                    </li><br>`;
+                });
+
+                html += '</ul>';
+                resultDiv.innerHTML = html;
+
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">✗ Error: ${error.message}</p>`;
+                jsonDiv.textContent = error.stack;
+            }
+        }
+
+        // Cargar automáticamente al abrir la página
+        window.onload = testAPI;
+    </script>
+</body>
+
+</html>
