@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BeneficiarioForm } from './components/BeneficiarioForm';
 import { BeneficiarioTable } from './components/BeneficiarioTable';
 import { Beneficiario, CreateUpdateBeneficiario, DocumentoIdentidad } from './types';
@@ -94,8 +94,8 @@ function App() {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gray-50">
                 <div className="text-center">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-                    <p className="mt-4 text-gray-600">Cargando...</p>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-primary-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600 font-medium">Cargando...</p>
                 </div>
             </div>
         );
@@ -104,9 +104,9 @@ function App() {
     return (
         <div className="min-h-screen bg-gray-50">
             {/* Header */}
-            <header className="bg-white shadow">
+            <header className="bg-white border-b-2 border-primary-100 shadow-sm">
                 <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <h1 className="text-3xl font-bold text-gray-900">
+                    <h1 className="text-3xl font-bold text-primary-900">
                         Sistema de Gestión de Beneficiarios
                     </h1>
                     <p className="mt-2 text-sm text-gray-600">
@@ -119,16 +119,21 @@ function App() {
                 {/* Notificaciones */}
                 {notification && (
                     <div
-                        className={`mb-6 p-4 rounded-lg ${notification.type === 'success'
-                            ? 'bg-green-50 text-green-800 border border-green-200'
-                            : 'bg-red-50 text-red-800 border border-red-200'
+                        className={`mb-6 p-4 rounded-lg border-l-4 ${notification.type === 'success'
+                            ? 'bg-success bg-opacity-5 border-success text-success'
+                            : 'bg-error bg-opacity-5 border-error text-error'
                             }`}
                     >
                         <div className="flex items-center justify-between">
-                            <p className="font-medium">{notification.message}</p>
+                            <div className="flex items-center gap-2">
+                                <span className="text-xl">
+                                    {notification.type === 'success' ? '✓' : '✕'}
+                                </span>
+                                <p className="font-medium">{notification.message}</p>
+                            </div>
                             <button
                                 onClick={() => setNotification(null)}
-                                className="text-gray-400 hover:text-gray-600"
+                                className="text-gray-400 hover:text-gray-600 transition-colors"
                             >
                                 ✕
                             </button>
@@ -138,11 +143,11 @@ function App() {
 
                 {/* Error */}
                 {error && (
-                    <div className="mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
-                        <p className="font-medium">Error: {error}</p>
+                    <div className="mb-6 bg-error bg-opacity-5 border-l-4 border-error text-error px-4 py-4 rounded-lg">
+                        <p className="font-semibold mb-2">Error: {error}</p>
                         <button
                             onClick={loadInitialData}
-                            className="mt-2 text-sm underline hover:no-underline"
+                            className="text-sm font-semibold underline hover:no-underline transition-colors"
                         >
                             Reintentar
                         </button>
@@ -150,25 +155,25 @@ function App() {
                 )}
 
                 {/* Formulario o Botón de Nuevo */}
-                <div className="bg-white shadow rounded-lg p-6 mb-6">
+                <div className="bg-white shadow-sm border border-gray-200 rounded-lg p-6 mb-6">
                     {!showForm ? (
                         <div className="flex justify-between items-center">
                             <div>
-                                <h2 className="text-xl font-semibold text-gray-900">Beneficiarios Registrados</h2>
+                                <h2 className="text-xl font-bold text-primary-900">Beneficiarios Registrados</h2>
                                 <p className="mt-1 text-sm text-gray-600">
-                                    Total: {beneficiarios.length} beneficiario{beneficiarios.length !== 1 ? 's' : ''}
+                                    Total: <span className="font-semibold text-primary-600">{beneficiarios.length}</span> beneficiario{beneficiarios.length !== 1 ? 's' : ''}
                                 </p>
                             </div>
                             <button
                                 onClick={() => setShowForm(true)}
-                                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium shadow-sm"
+                                className="btn-primary"
                             >
                                 + Nuevo Beneficiario
                             </button>
                         </div>
                     ) : (
                         <div>
-                            <h2 className="text-xl font-semibold text-gray-900 mb-6">
+                            <h2 className="text-xl font-bold text-primary-900 mb-6">
                                 {editingBeneficiario ? 'Editar Beneficiario' : 'Registrar Nuevo Beneficiario'}
                             </h2>
                             <BeneficiarioForm
@@ -186,7 +191,7 @@ function App() {
 
                 {/* Tabla */}
                 {!showForm && (
-                    <div className="bg-white shadow rounded-lg overflow-hidden">
+                    <div className="bg-white shadow-sm border border-gray-200 rounded-lg overflow-hidden">
                         <BeneficiarioTable
                             beneficiarios={beneficiarios}
                             onEdit={handleEdit}
@@ -197,8 +202,8 @@ function App() {
             </main>
 
             {/* Footer */}
-            <footer className="mt-12 bg-white shadow">
-                <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+            <footer className="mt-12 bg-white border-t border-gray-200 shadow-sm">
+                <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <p className="text-center text-gray-500 text-sm">
                         © 2026 PowerMas - Sistema de Gestión de Beneficiarios
                     </p>

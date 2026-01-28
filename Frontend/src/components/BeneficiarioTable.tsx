@@ -22,26 +22,26 @@ export const BeneficiarioTable: React.FC<BeneficiarioTableProps> = ({
     };
 
     return (
-        <div className="overflow-x-auto shadow-md rounded-lg">
+        <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-primary-50 border-b-2 border-primary-200">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-primary-900 uppercase tracking-wider">
                             Nombre Completo
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-primary-900 uppercase tracking-wider">
                             Tipo Documento
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-primary-900 uppercase tracking-wider">
                             Número Documento
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-primary-900 uppercase tracking-wider">
                             Fecha Nacimiento
                         </th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-primary-900 uppercase tracking-wider">
                             Sexo
                         </th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-6 py-4 text-right text-xs font-semibold text-primary-900 uppercase tracking-wider">
                             Acciones
                         </th>
                     </tr>
@@ -55,30 +55,30 @@ export const BeneficiarioTable: React.FC<BeneficiarioTableProps> = ({
                         </tr>
                     ) : (
                         beneficiarios.map((beneficiario) => (
-                            <tr key={beneficiario.id} className="hover:bg-gray-50">
+                            <tr key={beneficiario.id} className="hover:bg-gray-50 transition-colors duration-150">
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <div className="text-sm font-medium text-gray-900">
                                         {beneficiario.nombres} {beneficiario.apellidos}
                                     </div>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                    <span className="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-primary-100 text-primary-700">
                                         {beneficiario.documentoIdentidadAbreviatura}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-mono">
                                     {beneficiario.numeroDocumento}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                     {formatDate(beneficiario.fechaNacimiento)}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                     {beneficiario.sexo === 'M' ? 'Masculino' : 'Femenino'}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-3">
                                     <button
                                         onClick={() => onEdit(beneficiario)}
-                                        className="text-blue-600 hover:text-blue-900 mr-4"
+                                        className="text-primary-600 hover:text-primary-900 hover:underline transition-colors duration-150 font-semibold"
                                     >
                                         Editar
                                     </button>
@@ -88,7 +88,7 @@ export const BeneficiarioTable: React.FC<BeneficiarioTableProps> = ({
                                                 onDelete(beneficiario.id);
                                             }
                                         }}
-                                        className="text-red-600 hover:text-red-900"
+                                        className="text-error hover:text-red-900 hover:underline transition-colors duration-150 font-semibold"
                                     >
                                         Eliminar
                                     </button>

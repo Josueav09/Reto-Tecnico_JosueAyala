@@ -175,7 +175,7 @@ export const BeneficiarioForm: React.FC<BeneficiarioFormProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Nombres */}
                 <div>
-                    <label htmlFor="nombres" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="nombres" className="label-field">
                         Nombres *
                     </label>
                     <input
@@ -183,18 +183,17 @@ export const BeneficiarioForm: React.FC<BeneficiarioFormProps> = ({
                         id="nombres"
                         value={formData.nombres}
                         onChange={(e) => handleInputChange('nombres', e.target.value)}
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.nombres ? 'border-red-500' : 'border-gray-300'
-                            }`}
+                        className={`input-field ${errors.nombres ? 'error' : ''}`}
                         placeholder="Ingrese los nombres"
                     />
                     {errors.nombres && (
-                        <p className="mt-1 text-sm text-red-600">{errors.nombres}</p>
+                        <p className="error-message">{errors.nombres}</p>
                     )}
                 </div>
 
                 {/* Apellidos */}
                 <div>
-                    <label htmlFor="apellidos" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="apellidos" className="label-field">
                         Apellidos *
                     </label>
                     <input
@@ -202,18 +201,17 @@ export const BeneficiarioForm: React.FC<BeneficiarioFormProps> = ({
                         id="apellidos"
                         value={formData.apellidos}
                         onChange={(e) => handleInputChange('apellidos', e.target.value)}
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.apellidos ? 'border-red-500' : 'border-gray-300'
-                            }`}
+                        className={`input-field ${errors.apellidos ? 'error' : ''}`}
                         placeholder="Ingrese los apellidos"
                     />
                     {errors.apellidos && (
-                        <p className="mt-1 text-sm text-red-600">{errors.apellidos}</p>
+                        <p className="error-message">{errors.apellidos}</p>
                     )}
                 </div>
 
                 {/* Tipo de Documento */}
                 <div>
-                    <label htmlFor="documentoIdentidadId" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="documentoIdentidadId" className="label-field">
                         Tipo de Documento *
                     </label>
                     <select
@@ -223,8 +221,7 @@ export const BeneficiarioForm: React.FC<BeneficiarioFormProps> = ({
                             handleInputChange('documentoIdentidadId', parseInt(e.target.value));
                             handleInputChange('numeroDocumento', ''); // Limpiar número al cambiar tipo
                         }}
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.documentoIdentidadId ? 'border-red-500' : 'border-gray-300'
-                            }`}
+                        className={`input-field ${errors.documentoIdentidadId ? 'error' : ''}`}
                     >
                         <option value={0}>Seleccione un tipo de documento</option>
                         {documentos.map((doc) => (
@@ -234,13 +231,13 @@ export const BeneficiarioForm: React.FC<BeneficiarioFormProps> = ({
                         ))}
                     </select>
                     {errors.documentoIdentidadId && (
-                        <p className="mt-1 text-sm text-red-600">{errors.documentoIdentidadId}</p>
+                        <p className="error-message">{errors.documentoIdentidadId}</p>
                     )}
                 </div>
 
                 {/* Número de Documento con Validación Dinámica */}
                 <div>
-                    <label htmlFor="numeroDocumento" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="numeroDocumento" className="label-field">
                         Número de Documento *
                     </label>
                     <input
@@ -249,8 +246,7 @@ export const BeneficiarioForm: React.FC<BeneficiarioFormProps> = ({
                         value={formData.numeroDocumento}
                         onChange={(e) => handleNumeroDocumentoChange(e.target.value)}
                         disabled={!selectedDocumento}
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.numeroDocumento ? 'border-red-500' : 'border-gray-300'
-                            } ${!selectedDocumento ? 'bg-gray-100 cursor-not-allowed' : ''}`}
+                        className={`input-field ${errors.numeroDocumento ? 'error' : ''}`}
                         placeholder={
                             selectedDocumento
                                 ? `Ingrese ${selectedDocumento.longitud} ${selectedDocumento.soloNumeros ? 'dígitos' : 'caracteres'}`
@@ -268,13 +264,13 @@ export const BeneficiarioForm: React.FC<BeneficiarioFormProps> = ({
                         </div>
                     )}
                     {errors.numeroDocumento && (
-                        <p className="mt-1 text-sm text-red-600">{errors.numeroDocumento}</p>
+                        <p className="error-message">{errors.numeroDocumento}</p>
                     )}
                 </div>
 
                 {/* Fecha de Nacimiento */}
                 <div>
-                    <label htmlFor="fechaNacimiento" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="fechaNacimiento" className="label-field">
                         Fecha de Nacimiento *
                     </label>
                     <input
@@ -283,61 +279,60 @@ export const BeneficiarioForm: React.FC<BeneficiarioFormProps> = ({
                         value={formData.fechaNacimiento}
                         onChange={(e) => handleInputChange('fechaNacimiento', e.target.value)}
                         max={new Date().toISOString().split('T')[0]}
-                        className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.fechaNacimiento ? 'border-red-500' : 'border-gray-300'
-                            }`}
+                        className={`input-field ${errors.fechaNacimiento ? 'error' : ''}`}
                     />
                     {errors.fechaNacimiento && (
-                        <p className="mt-1 text-sm text-red-600">{errors.fechaNacimiento}</p>
+                        <p className="error-message">{errors.fechaNacimiento}</p>
                     )}
                 </div>
 
                 {/* Sexo */}
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="label-field">
                         Sexo *
                     </label>
                     <div className="flex gap-4">
-                        <label className="flex items-center">
+                        <label className="flex items-center cursor-pointer">
                             <input
                                 type="radio"
                                 value="M"
                                 checked={formData.sexo === 'M'}
                                 onChange={(e) => handleInputChange('sexo', e.target.value)}
-                                className="mr-2"
+                                className="mr-2 w-4 h-4 text-blue-600"
                             />
-                            <span>Masculino</span>
+                            <span className="text-sm text-gray-700">Masculino</span>
                         </label>
-                        <label className="flex items-center">
+                        <label className="flex items-center cursor-pointer">
                             <input
                                 type="radio"
                                 value="F"
                                 checked={formData.sexo === 'F'}
                                 onChange={(e) => handleInputChange('sexo', e.target.value)}
-                                className="mr-2"
+                                className="mr-2 w-4 h-4 text-blue-600"
                             />
-                            <span>Femenino</span>
+                            <span className="text-sm text-gray-700">Femenino</span>
                         </label>
                     </div>
                     {errors.sexo && (
-                        <p className="mt-1 text-sm text-red-600">{errors.sexo}</p>
+                        <p className="error-message">{errors.sexo}</p>
                     )}
                 </div>
             </div>
 
             {/* Botones */}
-            <div className="flex justify-end gap-4 pt-4 border-t">
+            <div className="flex justify-end gap-4 pt-4 border-t border-gray-200">
                 <button
                     type="button"
                     onClick={onCancel}
                     disabled={isSubmitting}
-                    className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50"
+                    className="btn-secondary disabled:opacity-50"
                 >
                     Cancelar
                 </button>
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                     {isSubmitting ? 'Guardando...' : initialData ? 'Actualizar' : 'Registrar'}
                 </button>

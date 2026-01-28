@@ -2,6 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* Paleta Principal (Azul Corporativo Moderno) */
+  --primary-50: #eff6ff;
+  --primary-100: #dbeafe;
+  --primary-200: #bfdbfe;
+  --primary-300: #93c5fd;
+  --primary-400: #60a5fa;
+  --primary-500: #3b82f6;
+  --primary-600: #2563eb;
+  --primary-700: #1d4ed8;
+  --primary-800: #1e40af;
+  --primary-900: #1e3a8a;
+
+  /* Acentos */
+  --accent-500: #f59e0b;
+  --accent-600: #d97706;
+
+  /* Success/Error */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+
+  /* Grises (Mezcla de valores usuario + estándar Tailwind) */
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -9,4 +44,55 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--gray-50);
+  color: var(--gray-900);
+}
+
+/* Clases de utilidad para estados */
+.btn-primary {
+  @apply px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 active:bg-blue-800 font-medium shadow-sm transition-colors duration-200;
+}
+
+.btn-primary:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.btn-secondary {
+  @apply px-6 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 font-medium transition-colors duration-200;
+}
+
+.btn-danger {
+  @apply px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-medium shadow-sm transition-colors duration-200;
+}
+
+.input-field {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+}
+
+.input-field.error {
+  @apply border-red-500 focus:ring-red-500;
+}
+
+.input-field:disabled {
+  @apply bg-gray-100 cursor-not-allowed;
+}
+
+.label-field {
+  @apply block text-sm font-medium text-gray-700 mb-2;
+}
+
+.error-message {
+  @apply mt-1 text-sm text-red-600;
+}
+
+.success-banner {
+  @apply bg-success bg-opacity-10 border border-success text-success px-4 py-3 rounded-lg;
+}
+
+.error-banner {
+  @apply bg-error bg-opacity-10 border border-error text-error px-4 py-3 rounded-lg;
+}
+
+.warning-banner {
+  @apply bg-warning bg-opacity-10 border border-warning text-warning px-4 py-3 rounded-lg;
 }
